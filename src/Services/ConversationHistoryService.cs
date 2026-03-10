@@ -100,7 +100,7 @@ public partial class ConversationHistoryService
         }
     }
 
-    public List<ConversationSummary> GetConversationList()
+    public List<ConversationSummary> GetConversationList(string? appName = null)
     {
         var summaries = new List<ConversationSummary>();
         try
@@ -114,10 +114,15 @@ public partial class ConversationHistoryService
                     var conv = JsonSerializer.Deserialize<SavedConversation>(json, JsonOptions);
                     if (conv != null)
                     {
+                        if (!string.IsNullOrEmpty(appName) &&
+                            !string.Equals(conv.AppName, appName, StringComparison.OrdinalIgnoreCase))
+                            continue;
+
                         summaries.Add(new ConversationSummary
                         {
                             Id = conv.Id,
                             Title = conv.Title,
+                            AppName = conv.AppName,
                             CreatedAt = conv.CreatedAt,
                             UpdatedAt = conv.UpdatedAt,
                             MessageCount = conv.DisplayHistory?.Count ?? 0
@@ -135,7 +140,7 @@ public partial class ConversationHistoryService
         return summaries.OrderByDescending(s => s.UpdatedAt).ToList();
     }
 
-    public SavedConversation? LoadConversation(string id)
+    public SavedConversation? LoadConversation(string id, string? appName = null)
     {
         try
         {
@@ -143,7 +148,12 @@ public partial class ConversationHistoryService
             if (filePath == null || !File.Exists(filePath)) return null;
             var json = ReadConversationFile(filePath);
             if (json == null) return null;
-            return JsonSerializer.Deserialize<SavedConversation>(json, JsonOptions);
+            var conversation = JsonSerializer.Deserialize<SavedConversation>(json, JsonOptions);
+            if (conversation == null) return null;
+            if (!string.IsNullOrEmpty(appName) &&
+                !string.Equals(conversation.AppName, appName, StringComparison.OrdinalIgnoreCase))
+                return null;
+            return conversation;
         }
         catch (Exception ex)
         {
@@ -210,6 +220,10 @@ public class SavedConversation
     [JsonPropertyName("title")]
     public string Title { get; set; } = string.Empty;
 
+    [JsonPropertyName("appName")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? AppName { get; set; }
+
     [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
@@ -243,6 +257,10 @@ public class ConversationSummary
 
     [JsonPropertyName("title")]
     public string Title { get; set; } = string.Empty;
+
+    [JsonPropertyName("appName")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? AppName { get; set; }
 
     [JsonPropertyName("createdAt")]
     public DateTime CreatedAt { get; set; }

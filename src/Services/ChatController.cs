@@ -893,7 +893,7 @@ public class ChatController
     private void HandleGetHistory()
     {
         EnsureServicesInitialized();
-        var list = _historyService!.GetConversationList();
+        var list = _historyService!.GetConversationList(GetCurrentAppName());
         SendToWebView("history_list", new { conversations = list });
     }
 
@@ -909,10 +909,10 @@ public class ChatController
         }
 
         EnsureServicesInitialized();
-        var conversation = _historyService!.LoadConversation(id);
+        var conversation = _historyService!.LoadConversation(id, GetCurrentAppName());
         if (conversation == null)
         {
-            SendToWebView("error", new { message = "Conversation not found.", code = "history_error" });
+            SendToWebView("error", new { message = "Conversation not found for the current app.", code = "history_error" });
             return;
         }
 
@@ -979,12 +979,13 @@ public class ChatController
                 }
             }
 
-            var existing = _historyService.LoadConversation(_currentConversationId);
+            var existing = _historyService.LoadConversation(_currentConversationId, GetCurrentAppName());
 
             _historyService.SaveConversation(new SavedConversation
             {
                 Id = _currentConversationId,
                 Title = _currentConversationTitle ?? "Untitled",
+                AppName = GetCurrentAppName(),
                 CreatedAt = _currentConversationCreatedAt != default
                     ? _currentConversationCreatedAt
                     : (existing?.CreatedAt ?? DateTime.UtcNow),
@@ -1249,6 +1250,8 @@ public class ChatController
         }
         return documentIndex;
     }
+
+    private string? GetCurrentAppName() => Model?.Root?.Name;
 
     private static int GetContextLimit(string model) => 200_000;
 }

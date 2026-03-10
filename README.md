@@ -309,16 +309,9 @@ All data is sent via **HTTPS** to Anthropic's Claude API (`api.anthropic.com`). 
 5. Ensure users understand and accept the data consent dialog before use.
 6. Consider network-level controls (firewall rules) to restrict outbound traffic to `api.anthropic.com` only.
 
-## AIDE Pro & Partnerships
-
-For access to the pro version or partnership inquiries, reach out to **Neel Desai**:
-
-- **LinkedIn:** [Neel Desai](https://www.linkedin.com/in/neeldesai/)
-- **Email:** hello@goldenearth.io
-
 ## Disclaimer
 
-This extension was built as a fun weekend project by Neel with assistance from Claude Co-Pilot. Please use at your own discretion. Asking the app owner for permission before using an AI agent on their app is recommended.
+Please use this extension at your own discretion. Asking the app owner for permission before using an AI agent on their app is recommended.
 
 ## License
 

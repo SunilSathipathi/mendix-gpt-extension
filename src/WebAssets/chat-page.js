@@ -104,12 +104,16 @@
     });
 
     d.refreshBtn.addEventListener('click', function () {
+        state.set('skipAutoLoadConversation', true);
+        state.set('autoLoadPending', false);
         d.contextDot.className = 'status-dot loading';
         d.contextText.textContent = 'Loading context...';
         AIDE.sendToBackend('get_context');
     });
 
     d.newChatBtn.addEventListener('click', function () {
+        state.set('skipAutoLoadConversation', true);
+        state.set('autoLoadPending', false);
         if (state.get('isStreaming')) {
             AIDE.sendToBackend('cancel');
             AIDE.endStream();
