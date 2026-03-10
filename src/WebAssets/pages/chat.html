@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self';">
-    <title>AIDE Lite</title>
+    <title>Mendix GPT Extension</title>
     <link rel="stylesheet" href="styles/main.css?v=11">
 </head>
 <body>
@@ -17,7 +17,7 @@
         <!-- Header -->
         <div class="header">
             <div class="header-left">
-                <span class="title">AIDE Lite</span>
+                <span class="title">Mendix GPT Extension</span>
                 <span class="version-badge">v1.3.0</span>
                 <span class="model-badge" id="modelBadge">Sonnet 4.5</span>
                 <span class="token-badge hidden" id="tokenBadge"></span>
@@ -51,7 +51,7 @@
         <!-- Chat Messages Area -->
         <div id="chatArea" class="chat-area">
             <div class="welcome" id="welcomeScreen">
-                <h2>AIDE Lite</h2>
+                <h2>Mendix GPT Extension</h2>
                 <p>AI-powered Mendix development assistant</p>
                 <div class="quick-actions">
                     <button class="quick-action" data-prompt="Describe the domain model of this app">
@@ -106,7 +106,7 @@
                 <button id="stopBtn" class="stop-btn hidden" title="Stop generating" aria-label="Stop generating">&#x25A0;</button>
             </div>
         </div>
-        <div class="data-disclosure">Messages and app context are sent to Anthropic's Claude API for processing.</div>
+        <div class="data-disclosure">Messages and app context are sent to the selected AI provider for processing, using either Anthropic or OpenAI.</div>
     </div>
 
     <!-- Settings Modal -->
@@ -114,7 +114,7 @@
         <div class="modal-overlay"></div>
         <div class="modal-dialog">
             <button class="modal-close-btn" aria-label="Close">&times;</button>
-            <h3>AIDE Lite Settings</h3>
+            <h3>Mendix GPT Extension Settings</h3>
             <div class="form-group">
                 <label for="providerSelect">Provider</label>
                 <select id="providerSelect">
@@ -252,15 +252,15 @@
         <div class="modal-overlay" id="helpOverlay"></div>
         <div class="modal-dialog help-dialog">
             <button class="modal-close-btn" aria-label="Close">&times;</button>
-            <h3>&#x2753; AIDE Lite Help</h3>
+            <h3>&#x2753; Mendix GPT Extension Help</h3>
             <div class="help-content">
 
                 <div class="help-section">
                     <h4>&#x1F680; Getting Started</h4>
                     <ol>
-                        <li>Open AIDE Lite from the <strong>Extensions</strong> menu in Studio Pro.</li>
+                        <li>Open Mendix GPT Extension from the <strong>Extensions</strong> menu in Studio Pro.</li>
                         <li>Click the <span class="help-icon-inline">&#x2699;</span> gear icon to open <strong>Settings</strong>.</li>
-                        <li>Enter your <strong>Claude API Key</strong> (get one at <em>console.anthropic.com</em>). It is encrypted locally and never shared.</li>
+                        <li>Select a provider and enter your <strong>Anthropic</strong> or <strong>OpenAI</strong> API key. It is encrypted locally and never shared.</li>
                         <li>Click the <span class="help-icon-inline">&#x21bb;</span> refresh button to load your <strong>App Context</strong>.</li>
                         <li>Start chatting!</li>
                     </ol>
@@ -270,8 +270,8 @@
                     <h4>&#x1F4AC; Chat Modes</h4>
                     <p>Select from the dropdown next to the input:</p>
                     <ul>
-                        <li><strong class="help-highlight-agent">Agent</strong> &mdash; Claude can read your app model AND create/edit microflows. Use for making changes.</li>
-                        <li><strong class="help-highlight-ask">Ask</strong> &mdash; Read-only mode. Claude inspects your model but cannot modify anything. Use for questions and analysis.</li>
+                        <li><strong class="help-highlight-agent">Agent</strong> &mdash; The selected AI provider can read your app model and create or edit microflows. Use for making changes.</li>
+                        <li><strong class="help-highlight-ask">Ask</strong> &mdash; Read-only mode. The selected AI provider inspects your model but cannot modify anything. Use for questions and analysis.</li>
                     </ul>
                 </div>
 
@@ -292,7 +292,7 @@
                 <div class="help-section">
                     <h4>&#x1F4C4; Active Document Tracking</h4>
                     <p>AIDE automatically detects which document you have open in Studio Pro and shows it in a bar below the context status.</p>
-                    <p>When you send a message, this is automatically included as context so Claude knows what you&rsquo;re looking at. Click the <strong>+</strong> button on the indicator bar to add it as an explicit @-reference chip.</p>
+                    <p>When you send a message, this is automatically included as context so the selected AI provider knows what you&rsquo;re looking at. Click the <strong>+</strong> button on the indicator bar to add it as an explicit @-reference chip.</p>
                     <p>If you add explicit @-chips, the automatic active document context is skipped to avoid redundancy.</p>
                 </div>
 
@@ -300,8 +300,8 @@
                     <h4>&#x1F5B1; Right-Click Context Menu</h4>
                     <p>Right-click any <strong>document</strong> (microflow, page) in the App Explorer or any <strong>entity</strong> in the Domain Model editor:</p>
                     <ul>
-                        <li><strong>Explain with AIDE Lite</strong> &mdash; Opens AIDE and immediately sends &ldquo;Explain @Module.Element&rdquo; to Claude.</li>
-                        <li><strong>Add to AIDE Lite Context</strong> &mdash; Opens AIDE and adds an @-reference chip. You type your own question.</li>
+                        <li><strong>Explain with Mendix GPT Extension</strong> &mdash; Opens the extension and immediately sends &ldquo;Explain @Module.Element&rdquo; to the selected AI provider.</li>
+                        <li><strong>Add to Mendix GPT Extension Context</strong> &mdash; Opens the extension and adds an @-reference chip. You type your own question.</li>
                     </ul>
                     <p>Chips are color-coded: <span class="help-chip help-chip-entity">Entity</span> <span class="help-chip help-chip-microflow">Microflow</span> <span class="help-chip help-chip-page">Page</span></p>
                 </div>
@@ -310,7 +310,7 @@
                     <h4>&#x1F4CE; Attachments</h4>
                     <p>Click the <span class="help-icon-inline">&#x2795;</span> button, <strong>drag &amp; drop</strong> onto the input area, or <strong>paste from clipboard</strong>:</p>
                     <p><strong>Images</strong> (JPEG, PNG, GIF, WebP &mdash; max 20 MB each):<br>
-                    Shown as thumbnail previews. Claude can see and analyze the image.</p>
+                    Shown as thumbnail previews. The selected AI provider can analyze the image.</p>
                     <p><strong>Text files</strong> (max 500 KB each):<br>
                     Shown as file chips. Content is sent as formatted code blocks.</p>
                     <p>Supported text types:</p>
@@ -334,7 +334,7 @@
                 </div>
 
                 <div class="help-section">
-                    <h4>&#x1F527; What Claude Can Do</h4>
+                    <h4>&#x1F527; What The AI Can Do</h4>
                     <p><strong>Read (9 tools):</strong> List modules, entities, associations, enumerations, pages, microflows. Get full details on entities and microflows. Search any element by name.</p>
                     <p><strong>Write (5 tools):</strong> Create microflows (21 activity types), rename microflows, add activities, replace microflows, edit activity properties.</p>
                 </div>
@@ -350,14 +350,14 @@
 
                 <div class="help-section">
                     <h4>&#x1F4DD; Custom Project Rules</h4>
-                    <p>Create a file named <code>.aide-lite-rules.md</code> in the root of your Mendix project. Its content is injected into Claude&rsquo;s system prompt. Use it for project-specific naming conventions, domain terminology, or business logic constraints.</p>
+                    <p>Create a file named <code>.aide-lite-rules.md</code> in the root of your Mendix project. Its content is injected into the AI system prompt. Use it for project-specific naming conventions, domain terminology, or business logic constraints.</p>
                 </div>
 
                 <div class="help-section">
                     <h4>&#x2699; Settings Reference</h4>
                     <table class="help-table">
-                        <tr><td><strong>Claude API Key</strong></td><td>Your Anthropic key (encrypted locally)</td></tr>
-                        <tr><td><strong>Model</strong></td><td>Sonnet 4.5 / Sonnet 4.6 / Opus 4.6 / Haiku 4.5</td></tr>
+                        <tr><td><strong>Provider API Key</strong></td><td>Your Anthropic or OpenAI key (encrypted locally)</td></tr>
+                        <tr><td><strong>Model</strong></td><td>Claude Sonnet / Claude Opus / Claude Haiku / GPT-4o mini</td></tr>
                         <tr><td><strong>Context Depth</strong></td><td>Full App or Current Module Only</td></tr>
                         <tr><td><strong>Max Response Tokens</strong></td><td>256 &ndash; 128,000 (default 8,192)</td></tr>
                         <tr><td><strong>Rate Limit Retries</strong></td><td>Auto-retry count (default 20)</td></tr>
@@ -373,7 +373,7 @@
                 <div class="help-section">
                     <h4>&#x26A0; Known Limitations</h4>
                     <ul>
-                        <li>No decision, loop, or merge creation (sequential activities only &mdash; Claude guides manual placement)</li>
+                        <li>No decision, loop, or merge creation (sequential activities only &mdash; the AI guides manual placement)</li>
                         <li>No page or nanoflow creation</li>
                         <li>No entity or enumeration creation (read-only domain model)</li>
                         <li>No security rule APIs</li>
@@ -394,16 +394,16 @@
             <button class="modal-close-btn" aria-label="Close">&times;</button>
             <h3>Data Processing Consent</h3>
             <div class="consent-content">
-                <p>Before using AIDE Lite, please understand how your data is processed:</p>
+                <p>Before using Mendix GPT Extension, please understand how your data is processed:</p>
                 <ul>
-                    <li><strong>App model data</strong> (entity names, attributes, microflow structures, page names) is sent to Anthropic's Claude API to provide context for AI responses.</li>
-                    <li><strong>Your chat messages</strong> are sent to Anthropic for processing and response generation.</li>
-                    <li><strong>Anthropic</strong> is a US-based company. Your data is transmitted via HTTPS and processed on their infrastructure.</li>
+                    <li><strong>App model data</strong> (entity names, attributes, microflow structures, page names) is sent to the selected provider to provide context for AI responses.</li>
+                    <li><strong>Your chat messages</strong> are sent to the selected provider for processing and response generation.</li>
+                    <li><strong>Anthropic or OpenAI</strong> may process your data depending on the configured provider.</li>
                     <li><strong>Conversation history</strong> is stored locally on your machine with DPAPI encryption. Up to 50 conversations are retained.</li>
-                    <li><strong>Your API key</strong> is encrypted with DPAPI and stored locally. It is only used to authenticate with Anthropic's API.</li>
+                    <li><strong>Your API key</strong> is encrypted with DPAPI and stored locally. It is only used to authenticate with the selected provider API.</li>
                 </ul>
                 <p>You can control the amount of data sent via the <strong>Context Depth</strong> setting (Summary or None sends less data).</p>
-                <p>For more details, see the Privacy Notice (lock icon in the header) or review <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Anthropic's Privacy Policy</a>.</p>
+                <p>For more details, see the Privacy Notice (lock icon in the header) and review the privacy policy for your selected provider.</p>
             </div>
             <div class="modal-actions">
                 <button id="consentAcceptBtn" class="primary-btn">I Understand &amp; Accept</button>
@@ -428,9 +428,9 @@
 
                 <h4>How Data is Processed</h4>
                 <ul>
-                    <li>Data is sent via <strong>HTTPS</strong> to Anthropic's Claude API (<code>api.anthropic.com</code>) for AI-powered responses.</li>
-                    <li>Anthropic processes data on <strong>US-based infrastructure</strong>.</li>
-                    <li>Refer to <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Anthropic's Privacy Policy</a> for their data handling practices.</li>
+                    <li>Data is sent via <strong>HTTPS</strong> to the configured AI provider for responses.</li>
+                    <li>The provider depends on your settings: Anthropic or OpenAI.</li>
+                    <li>Review the privacy policy of the provider you configure before use.</li>
                 </ul>
 
                 <h4>Data Stored Locally</h4>
@@ -449,7 +449,7 @@
                 </ul>
 
                 <h4>Third-Party Processing</h4>
-                <p>Anthropic (San Francisco, CA, USA) processes your data as described in their <a href="https://www.anthropic.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>. If your organization is subject to GDPR, review Anthropic's data processing terms before use.</p>
+                <p>Your configured provider processes data according to its own terms and privacy policy. If your organization is subject to GDPR or similar requirements, review the provider's data processing terms before use.</p>
             </div>
             <div class="modal-actions">
                 <button id="privacyCloseBtn" class="secondary-btn">Close</button>

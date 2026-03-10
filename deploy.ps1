@@ -5,7 +5,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "=== AIDE Lite - Build & Deploy ===" -ForegroundColor Cyan
+Write-Host "=== Mendix GPT Extension - Build & Deploy ===" -ForegroundColor Cyan
 Write-Host "Source:  $PSScriptRoot" -ForegroundColor Gray
 
 # Validate target exists

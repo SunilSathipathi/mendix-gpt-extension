@@ -32,10 +32,10 @@ public class AideLiteEntityContextMenuExtension : ContextMenuExtension<IEntity>
         var qualifiedName = ResolveQualifiedName(entity);
 
         yield return new MenuViewModel(
-            "Explain with AIDE Lite",
+            "Explain with Mendix GPT Extension",
             () =>
             {
-                _log.Info($"AIDE Lite: 'Explain' clicked for entity '{qualifiedName}'");
+                _log.Info($"Mendix GPT Extension: 'Explain' clicked for entity '{qualifiedName}'");
                 DocumentReferenceStore.Enqueue(
                     new DocumentReference(DocumentAction.Explain, "entity", qualifiedName));
                 if (ViewToggleCoordinator.CurrentViewMode == ViewMode.Pane)
@@ -43,10 +43,10 @@ public class AideLiteEntityContextMenuExtension : ContextMenuExtension<IEntity>
             });
 
         yield return new MenuViewModel(
-            "Add to AIDE Lite Context",
+            "Add to Mendix GPT Extension Context",
             () =>
             {
-                _log.Info($"AIDE Lite: 'Add to Context' clicked for entity '{qualifiedName}'");
+                _log.Info($"Mendix GPT Extension: 'Add to Context' clicked for entity '{qualifiedName}'");
                 DocumentReferenceStore.Enqueue(
                     new DocumentReference(DocumentAction.AddContext, "entity", qualifiedName));
                 if (ViewToggleCoordinator.CurrentViewMode == ViewMode.Pane)
@@ -72,7 +72,7 @@ public class AideLiteEntityContextMenuExtension : ContextMenuExtension<IEntity>
         }
         catch (Exception ex)
         {
-            _log.Warn($"AIDE Lite: Error resolving qualified name for entity '{entity.Name}': {ex.Message}");
+            _log.Warn($"Mendix GPT Extension: Error resolving qualified name for entity '{entity.Name}': {ex.Message}");
         }
         return entity.Name;
     }

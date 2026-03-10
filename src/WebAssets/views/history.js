@@ -174,7 +174,7 @@
         var chatHistory = state.get('chatHistory');
 
         var lines = [];
-        lines.push('# AIDE Lite Chat Export');
+        lines.push('# Mendix GPT Extension Chat Export');
         lines.push('**Date:** ' + dateStr + ' ' + timeStr + ' | **Model:** ' + modelName);
         lines.push('');
         lines.push('---');
@@ -220,14 +220,14 @@
         }
 
         lines.push('---');
-        lines.push('*Exported from AIDE Lite v1.3.0*');
+        lines.push('*Exported from Mendix GPT Extension v1.3.0*');
 
         var markdown = lines.join('\n');
         var blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
         a.href = url;
-        a.download = 'aide-lite-chat-' + dateStr + '.md';
+        a.download = 'mendix-gpt-extension-chat-' + dateStr + '.md';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

@@ -73,7 +73,7 @@ function Step-Close {
 }
 
 function Step-Build {
-    Write-Host "=== Building AIDE-Lite ===" -ForegroundColor Cyan
+    Write-Host "=== Building Mendix GPT Extension ===" -ForegroundColor Cyan
     Write-Host "Project: $CsprojPath" -ForegroundColor Gray
 
     Push-Location $ProjectDir
@@ -156,7 +156,7 @@ function Step-Launch {
 }
 
 function Step-Status {
-    Write-Host "=== AIDE-Lite Status ===" -ForegroundColor Cyan
+    Write-Host "=== Mendix GPT Extension Status ===" -ForegroundColor Cyan
 
     # Studio Pro process
     $sp = Get-Process -Name "studiopro" -ErrorAction SilentlyContinue

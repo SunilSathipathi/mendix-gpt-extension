@@ -43,11 +43,11 @@ public class AideLiteMenuExtension : MenuExtension
     public override IEnumerable<MenuViewModel> GetMenus()
     {
         yield return new MenuViewModel(
-            "AIDE Lite Chat",
+            "Mendix GPT Extension",
             () => _dockingService.OpenPane(AideLitePaneExtension.PaneId)
         );
         yield return new MenuViewModel(
-            "AIDE Lite Settings",
+            "Mendix GPT Extension Settings",
             () =>
             {
                 // WebServerBaseUrl is inherited from MenuExtension base class

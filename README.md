@@ -1,6 +1,6 @@
-# AIDE Lite
+# Mendix GPT Extension
 
-AIDE Lite is a Mendix Studio Pro extension that adds an AI chat panel for exploring app structure and assisting with microflow work inside the IDE.
+Mendix GPT Extension is a Mendix Studio Pro extension that adds an AI chat panel for exploring app structure and assisting with microflow work inside the IDE.
 
 ## What It Does
 
@@ -29,7 +29,7 @@ src/
 
 - Mendix Studio Pro 10.24.x with extension development enabled
 - .NET 8 SDK
-- A valid AI provider API key configured through the extension settings
+- An Anthropic API key or an OpenAI API key configured through the extension settings
 
 ## Build
 
@@ -64,6 +64,7 @@ After deployment, restart Studio Pro or synchronize the app directory.
 - Configuration is managed in the extension services and models under `src\Services` and `src\Models`
 - Frontend behavior for the chat panel lives in `src\WebAssets`
 - The repository currently targets `net8.0-windows` and `Mendix.StudioPro.ExtensionsAPI` 10.23.0
+- The extension supports both Anthropic Claude models and OpenAI GPT models
 
 ## License
 

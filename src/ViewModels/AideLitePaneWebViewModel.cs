@@ -20,7 +20,7 @@ public class AideLitePaneWebViewModel : WebViewDockablePaneViewModel
     {
         _chatController = chatController;
         _webServerBaseUrl = webServerBaseUrl;
-        Title = "AIDE Lite";
+        Title = "Mendix GPT Extension";
     }
 
     public override void InitWebView(IWebView webView)

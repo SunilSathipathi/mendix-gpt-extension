@@ -14,7 +14,7 @@ using Mendix.StudioPro.ExtensionsAPI.UI.WebView;
 namespace AideLite.ViewModels;
 
 /// <summary>
-/// Modal dialog for configuring AIDE Lite settings (API key, Claude model, context depth, max tokens).
+/// Modal dialog for configuring Mendix GPT Extension settings (provider, API key, model, context depth, max tokens).
 /// Rendered as a WebView loading the settings.html page from the local web server.
 /// </summary>
 public class SettingsDialogViewModel : WebViewModalDialogViewModel
@@ -36,7 +36,7 @@ public class SettingsDialogViewModel : WebViewModalDialogViewModel
         ILogService logService,
         IDialogService dialogService,
         Uri webServerBaseUrl)
-        : base("AIDE Lite Settings")
+        : base("Mendix GPT Extension Settings")
     {
         _configService = configService;
         _logService = logService;
@@ -82,7 +82,7 @@ public class SettingsDialogViewModel : WebViewModalDialogViewModel
         }
         catch (Exception ex)
         {
-            _logService.Error($"AIDE Lite Settings: Error: {ex.Message}");
+            _logService.Error($"Mendix GPT Extension Settings: Error: {ex.Message}");
         }
     }
 

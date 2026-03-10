@@ -38,10 +38,10 @@ public class AideLiteDocumentContextMenuExtension : ContextMenuExtension<IDocume
         var qualifiedName = ResolveQualifiedName(document);
 
         yield return new MenuViewModel(
-            "Explain with AIDE Lite",
+            "Explain with Mendix GPT Extension",
             () =>
             {
-                _log.Info($"AIDE Lite: 'Explain' clicked for {elementType} '{qualifiedName}'");
+                _log.Info($"Mendix GPT Extension: 'Explain' clicked for {elementType} '{qualifiedName}'");
                 DocumentReferenceStore.Enqueue(
                     new DocumentReference(DocumentAction.Explain, elementType, qualifiedName));
                 // Only open the pane if we're in pane mode; in tab mode the chat is already visible
@@ -50,10 +50,10 @@ public class AideLiteDocumentContextMenuExtension : ContextMenuExtension<IDocume
             });
 
         yield return new MenuViewModel(
-            "Add to AIDE Lite Context",
+            "Add to Mendix GPT Extension Context",
             () =>
             {
-                _log.Info($"AIDE Lite: 'Add to Context' clicked for {elementType} '{qualifiedName}'");
+                _log.Info($"Mendix GPT Extension: 'Add to Context' clicked for {elementType} '{qualifiedName}'");
                 DocumentReferenceStore.Enqueue(
                     new DocumentReference(DocumentAction.AddContext, elementType, qualifiedName));
                 if (ViewToggleCoordinator.CurrentViewMode == ViewMode.Pane)
@@ -93,7 +93,7 @@ public class AideLiteDocumentContextMenuExtension : ContextMenuExtension<IDocume
         }
         catch (Exception ex)
         {
-            _log.Warn($"AIDE Lite: Error resolving qualified name for '{document.Name}': {ex.Message}");
+            _log.Warn($"Mendix GPT Extension: Error resolving qualified name for '{document.Name}': {ex.Message}");
         }
         return document.Name;
     }
